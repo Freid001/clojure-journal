@@ -12,8 +12,9 @@
                                                (POST "/" {body :body} (create-entry body))
                                                (context "/:id" [id] (defroutes document-routes
                                                                                (GET "/" [] (get-entry id))
-                                                                               (PUT "/:id" {body :body} (update-entry id body))
-                                                                               (DELETE "/" [] (delete-entry id))))))
+                                                                               ;(PUT "/:id" {body :body} (update-entry id body))
+                                                                               ;(DELETE "/" [] (delete-entry id))
+                                                                               ))))
            (route/not-found "not found!" ))
 
 (def app

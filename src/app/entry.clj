@@ -20,9 +20,7 @@
       (let [entry (assoc doc "id" id)]
 
         ; missing input
-        (if (empty? (get entry "debt")) (
-
-                                          ))
+        (if (empty? (get entry "debt")) ())
 
         (prn err)
 
@@ -33,12 +31,12 @@
 ;    (insert! db :entry entry))
 ;  (get-entry id)))
 
-(defn update-entry [id doc]
-  (let [entry (assoc doc "id" id)]
-    (update! db :entry entry ({:id id})))
-
-  (get-entry id))
-
-(defn delete-entry [id]
-  (delete! db :entry ({:id id}))
-  status (204))
+;(defn update-entry [id doc]
+;  (let [entry (assoc doc "id" id)]
+;    (update! db :entry entry ({:id id})))
+;
+;  (get-entry id))
+;
+;(defn delete-entry [id]
+;  (delete! db :entry ({:id id}))
+;  status (204))
