@@ -8,7 +8,7 @@
 
 (defroutes app-routes
            (context "/journal" [] (defroutes documents-routes
-                                               (GET "/" [] (list-entries))
+                                               (GET "/:account_number" [account_number] (list-entries account_number))
                                                (POST "/" {body :body} (create-entry body))
                                                (context "/:id" [id] (defroutes document-routes
                                                                                (GET "/" [] (get-entry id))
