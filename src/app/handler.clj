@@ -2,20 +2,20 @@
   (:use compojure.core)
   (:use cheshire.core)
   (:use app.entry)
+  (:use ring.util.response)
   (:require [compojure.handler :as handler]
-            [ring.middleware.json :as middleware]
-            [compojure.route :as route]))
+            [compojure.route :as route]
+            [ring.middleware.json :as middleware]))
 
 (defroutes app-routes
            (context "/journal" [] (defroutes journal-routes
-                                               (GET "/:account_number" [account_number] (list-entries account_number))
-                                               (POST "/" {body :body} (create-entry body))
-                                               (context "/:id" [id] (defroutes journal-routes
-                                                                               (GET "/" [] (get-entry id))
-                                                                               ;(PUT "/:id" {body :body} (update-entry id body))
-                                                                               ;(DELETE "/" [] (delete-entry id))
-                                                                               ))))
-           (route/not-found "not found!" ))
+                                             (context "/:account_number" [account_number] (defroutes account-number-routes
+                                                                                                     (GET "/balance" [account_number] (get-balance account_number))
+                                                                                                     (GET "/entries" [account_number] (get-entries account_number))))
+                                             (context "/entry" [] (defroutes entry-routes
+                                                                             (GET "/:id" [id] (get-entry id))
+                                                                             (PUT "/" {body :body} (create-entry body))))))
+           (route/not-found (response {:errors ["page not found."]})))
 
 (def app
   (-> (handler/api app-routes)

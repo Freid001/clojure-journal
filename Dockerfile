@@ -25,8 +25,3 @@ EXPOSE 3000
 
 # make entrypoint
 ENTRYPOINT ["/bin/sh", "/var/www/entrypoint.sh"]
-
-# lein ring server
-
-# docker run -it clojure_journal bash
-# docker exec -it clojure_journal bash

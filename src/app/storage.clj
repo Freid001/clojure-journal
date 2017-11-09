@@ -10,7 +10,7 @@
    })
 
 (defn create-db []
-  ; uncomment if you want to recreate the table
+  ; comment if you don't want to recreate the table during compilation
    (execute! db ["drop table if exists entry"])
 
   ; create tables
@@ -20,7 +20,7 @@
       ; create entry table
       (create-table-ddl :entry
                         [:id :primary :key]
-                        [:account_number "varchar(255)"]
+                        [:account_number "integer(255)"]
                         [:timestamp "timestamp"]
                         [:debit "double(9,2)"]
                         [:credit "double(9,2)"]))
