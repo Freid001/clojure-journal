@@ -7,10 +7,10 @@
             [compojure.route :as route]))
 
 (defroutes app-routes
-           (context "/journal" [] (defroutes documents-routes
+           (context "/journal" [] (defroutes journal-routes
                                                (GET "/:account_number" [account_number] (list-entries account_number))
                                                (POST "/" {body :body} (create-entry body))
-                                               (context "/:id" [id] (defroutes document-routes
+                                               (context "/:id" [id] (defroutes journal-routes
                                                                                (GET "/" [] (get-entry id))
                                                                                ;(PUT "/:id" {body :body} (update-entry id body))
                                                                                ;(DELETE "/" [] (delete-entry id))
