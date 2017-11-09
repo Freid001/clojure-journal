@@ -35,27 +35,10 @@
   (let [e (entry doc) err ()]
     (let [err (if (= (get e "account_number") nil) (conj err "an account_number is required") err)]
       (let [err (if (and (<= (get e "debit") 0) (<= (get e "credit") 0)) (conj err "either debit or credit is required") err)]
-        (if (= () err)
-          (insert! db :entry entry)
-        (response {:err err}))))))
-
-
-;(defn foo-bar [doc]
-;  (let [err []]
-;    (if (= (get doc "foo") nil) (conj err "foo is required"))
-;    (if (= (get doc "bar") nil) (conj err "bar is required"))
-;
-;    (if (not-empty err)
-;      (prn err)
-;        (
-;          ;do somthing
-;        )
-;      )
-;    )
-;  )
-
-
-
+        (if (= err ())
+          (let [insert (insert! db :entry e) ]
+            (get-entry (get e "id")))
+          (response {:errors err}))))))
 
 ;(let [id (str (java.util.UUID/randomUUID))]
 ;  (let [entry (assoc doc "id" id)]

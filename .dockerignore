@@ -1,0 +1,12 @@
+# self
+.dockerignore
+
+# .idea
+.idea/
+
+# version control
+.git/
+.gitignore
+
+# other
+README.md

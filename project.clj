@@ -1,5 +1,4 @@
-(defproject clojure-rest "0.1.0-SNAPSHOT"
-  :description "REST service for documents"
+(defproject clojure-journal "0.1.0-SNAPSHOT"
   :dependencies [[org.clojure/clojure "1.6.0"]
                  [org.clojure/tools.logging "0.4.0"]
                  [org.clojure/java.jdbc "0.3.5"]
