@@ -6,7 +6,7 @@
 (def db {
    :classname   "org.sqlite.JDBC"
    :subprotocol "sqlite"
-   :subname     "src/storage/journal.db"
+   :subname     "resources/storage/journal.db"
    })
 
 (defn create-db []
@@ -19,11 +19,13 @@
 
       ; create entry table
       (create-table-ddl :entry
-                        [:id :primary :key]
+                        [:entry_id "integer" "PRIMARY KEY" "AUTOINCREMENT"]
+                        [:reference "string"]
                         [:account_number "integer(255)"]
                         [:timestamp "timestamp"]
-                        [:debit "double(9,2)"]
-                        [:credit "double(9,2)"]))
+                        [:description "text"]
+                        [:debit "float(10,2)"]
+                        [:credit "float(10,2)"]))
 
     ; log any exceptions
     (catch Exception e

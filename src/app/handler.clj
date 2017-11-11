@@ -8,13 +8,12 @@
             [ring.middleware.json :as middleware]))
 
 (defroutes app-routes
-           (context "/journal" [] (defroutes journal-routes
-                                             (context "/:account_number" [account_number] (defroutes account-number-routes
-                                                                                                     (GET "/balance" [account_number] (get-balance account_number))
-                                                                                                     (GET "/entries" [account_number] (get-entries account_number))))
-                                             (context "/entry" [] (defroutes entry-routes
-                                                                             (GET "/:id" [id] (get-entry id))
-                                                                             (PUT "/" {body :body} (create-entry body))))))
+           (context "/entry" [] (defroutes entry-routes
+                                           (GET "/:id" [id] (get-entry id))
+                                           (PUT "/" {body :body} (create-entry body))))
+           (context "/:account_number" [account_number] (defroutes account-number-routes
+                                                                   (GET "/balance" [account_number] (get-balance account_number))
+                                                                   (GET "/ledger" [account_number] (get-ledger account_number))))
            (route/not-found (response {:errors ["page not found."]})))
 
 (def app

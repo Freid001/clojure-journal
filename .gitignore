@@ -5,6 +5,7 @@
 /.lein-*
 /.nrepl-port
 /.idea
+/.gradle
 pom.xml
 pom.xml.asc
 *.jar

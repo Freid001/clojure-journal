@@ -1,0 +1,69 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+}
+
+/**
+ * Get Date
+ * @return
+ */
+def getDate() {
+    def date = new Date()
+    def formattedDate = date.format('yyyyMMdd HHmmssZ')
+    return formattedDate
+}
+
+/**
+ * Build docker image
+ */
+task build {
+    doLast {
+        def deployStream = new ByteArrayOutputStream()
+        def date = getDate()
+
+        exec {
+            workingDir '.'
+            commandLine 'lein', 'ring', 'uberjar'
+        }
+
+        exec {
+            standardOutput = deployStream
+            workingDir '.'
+            commandLine 'git', 'rev-parse', '--short', 'HEAD'
+        }
+
+        exec{
+            workingDir '.'
+            commandLine 'docker', 'build',
+                    '--build-arg', "VERSION=${version}",
+                    '--build-arg', "BUILD_TIME=${date}",
+                    '--build-arg', "GHASH=${deployStream.toString().trim()}",
+                    '-t', "clojure_journal:${version}", "."
+        }
+    }
+}
+
+/**
+ * Run
+ */
+task run {
+    doLast{
+        exec {
+            workingDir '.'
+            commandLine 'docker-compose', 'up', '-d'
+        }
+    }
+}
+
+/**
+ * Stop
+ */
+task stop {
+    doLast {
+        exec {
+            workingDir '.'
+            commandLine 'docker-compose', 'down'
+        }
+    }
+}

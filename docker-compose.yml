@@ -2,6 +2,4 @@ clojure_journal:
   image: clojure_journal:latest
   command: run
   ports:
-    - 8000:3000
-  volumes:
-    - .:/opt/clojure_journal
+    - 3000:3000

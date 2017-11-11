@@ -1,27 +1,23 @@
-FROM ubuntu:xenial
+FROM java:8
 
 LABEL maintainer=freid
-ENV WORK_DIR /var/www
 
-# install dependancies
-RUN apt-get update
-RUN apt-get install -y default-jre curl wget
+ARG VERSION
+ARG BUILD_TIME
+ARG GHASH
 
-RUN wget https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein
-RUN chmod +x lein
-RUN mv lein /usr/local/bin
+ENV VERSION $VERSION
+ENV BUILD_TIME $BUILD_TIME
+ENV GHASH $GHASH
 
-# copy to /var/www
-COPY . $WORK_DIR
+COPY target /opt/clojure-journal/bin
+COPY resources /opt/clojure-journal/bin/resources
+COPY entrypoint.sh /opt/clojure-journal/bin/entrypoint.sh
 
-# make it a working directory
-WORKDIR $WORK_DIR
+RUN chmod 500 /opt/clojure-journal/bin/entrypoint.sh
 
-# fix permissions
-RUN chmod a+x /var/www/entrypoint.sh
+WORKDIR /opt/clojure-journal/bin
 
-# expose port 3000
 EXPOSE 3000
 
-# make entrypoint
-ENTRYPOINT ["/bin/sh", "/var/www/entrypoint.sh"]
+ENTRYPOINT ["/bin/sh", "./entrypoint.sh"]

@@ -1,19 +1,20 @@
 # Clojure Journal
 
 # About
-* A simple REST api which stores accounting journal entries.
-* Written to help me learn Clojure.
+* A simple REST api which stores debit & credit journal entries.
+* The purpose of this project was to gain some experience writing an application in Clojure.
 
 ## Requirements
-* [Docker](https://www.docker.com/) >= 17.06.0-c3
+* [Docker](https://www.docker.com/) 
+* [Gradle](https://gradle.org/)
 
-# Installation
+## Installation
 ```bash
-// build image
-docker run -it clojure_journal bash .
+// build and run app
+gradle build run
 
-// run container
-docker-compose up -d
+// stop app
+gradle stop
 ```
 
 # Usage
@@ -23,70 +24,48 @@ docker-compose up -d
 http://localhost:8000
 ```
 
-##### GET /journal/:account_number/balance
+##### GET /:account_number/balance
 
 ###### response
 ```json
 {
-    "total_balance": 0,
-    "total_credit": 100,
-    "total_debit": 100
+    "balance": 0
 }
 ```
 
-##### GET /journal/:account_number/entries
+##### GET /:account_number/ledger
 
 ###### response
 ```json
 [
-  {
-    "credit":0.0,
-    "debit":100.0,
-    "timestamp":1510247774,
-    "account_number":111,
-    "id":"dd40014f-bc12-487c-84cb-0b8c2c0c4e4b"
-  },
-  {
-    "credit":100.0,
-    "debit":0.0,
-    "timestamp":1510239819,
-    "account_number":111,
-    "id":"9d15750b-7f3d-4908-8d8c-5fcc42087030"
-  }
+  
 ]
 ```
 
-##### GET /journal/entry/:id
+##### GET /entry/:id
 
 ###### response
 ```json
 {
-  "credit":0.0,
-  "debit":100.0,
-  "timestamp":1510239819,
-  "account_number":111,
-  "id":"dd40014f-bc12-487c-84cb-0b8c2c0c4e4b"
+  
 }
 ```
 
-##### PUT /journal
+##### PUT /entry
 
 ###### body
 ```json
 {
-  "account_number":111,
-  "credit":0,
-  "debit":100
+  "account_number":123456789,
+  "description":"cash",
+  "reference":"GJ1",
+  "debit":500
 }
 ```
 
 ###### response
 ```json
 {
-  "credit":0.0,
-  "debit":100.0,
-  "timestamp":1510239819,
-  "account_number":111,
-  "id":"dd40014f-bc12-487c-84cb-0b8c2c0c4e4b"
+
 }
 ```
