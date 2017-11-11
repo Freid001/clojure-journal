@@ -29,7 +29,7 @@ http://localhost:8000
 ###### response
 ```json
 {
-    "balance": 0
+    "balance":610.0
 }
 ```
 
@@ -38,7 +38,46 @@ http://localhost:8000
 ###### response
 ```json
 [
-  
+  {
+    "balance":610.0,
+    "credit":90.0,
+    "debit":0.0,
+    "description":"supplies expense",
+    "timestamp":1510434125,
+    "account_number":123456789,
+    "reference":"GJ1",
+    "entry_id":4
+  },
+  {
+    "balance":700.0,
+    "credit":250.0,
+    "debit":0.0,
+    "description":"rent expense",
+    "timestamp":1510434092,
+    "account_number":123456789,
+    "reference":"GJ1",
+    "entry_id":3
+  },
+  {
+    "balance":950.0,
+    "credit":50.0,
+    "debit":0.0,
+    "description":"utilities expense",
+    "timestamp":1510434073,
+    "account_number":123456789,
+    "reference":"GJ1",
+    "entry_id":2
+  },
+  {
+    "balance":1000.0,
+    "credit":0.0,
+    "debit":1000.0,
+    "description":"cash",
+    "timestamp":1510434063,
+    "account_number":123456789,
+    "reference":"GJ1",
+    "entry_id":1
+  }
 ]
 ```
 
@@ -47,7 +86,13 @@ http://localhost:8000
 ###### response
 ```json
 {
-  
+  "credit":0.0,
+  "debit":500.0,
+  "description":"cash",
+  "timestamp":1510433564,
+  "account_number":123456789,
+  "reference":"GJ1",
+  "entry_id":1
 }
 ```
 
@@ -59,13 +104,19 @@ http://localhost:8000
   "account_number":123456789,
   "description":"cash",
   "reference":"GJ1",
-  "debit":500
+  "debit":500.00
 }
 ```
 
 ###### response
 ```json
 {
-
+  "credit":0.0,
+  "debit":500.0,
+  "description":"cash",
+  "timestamp":1510433564,
+  "account_number":123456789,
+  "reference":"GJ1",
+  "entry_id":1
 }
 ```

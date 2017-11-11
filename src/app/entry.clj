@@ -30,8 +30,8 @@
                     (assoc e "account_number" (if (integer? (get doc "account_number")) (get doc "account_number") (try (Integer/parseInt (get doc "account_number")) (catch Exception e nil))))
                     (assoc e "credit" (if (float? (get doc "credit")) (get doc "credit") (try (Float/parseFloat (get e "credit")) (catch Exception e 0))))
                     (assoc e "debit" (if (float? (get doc "debit")) (get doc "debit") (try (Float/parseFloat (get e "debit")) (catch Exception e 0))))
-                    (assoc e "description" (if (empty? (get doc "description")) ("") (get doc "description")))
-                    (assoc e "reference" (if (empty? (get doc "reference")) ("") (get doc "reference")))
+                    (assoc e "description" (if (empty? (get doc "description")) "" (get doc "description")))
+                    (assoc e "reference" (if (empty? (get doc "reference")) "" (get doc "reference")))
                     (assoc e "timestamp" (quot (System/currentTimeMillis) 1000)))
         errors (as-> () err
                      (if (= (get entry "account_number") nil)
