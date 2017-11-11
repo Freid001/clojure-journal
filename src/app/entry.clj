@@ -10,7 +10,7 @@
 
 ; get balance from journal for a specific account number.
 (defn get-balance [account_number]
-  (let [result (query db ["select (SUM(ee.debit) - (SUM(ee.credit))) AS balance
+  (let [result (query db ["select (SUM(debit) - (SUM(credit))) AS balance
                            from entry where account_number =?", account_number])]
     (if (empty? result) (not-found ()) (response (first result)))))
 
