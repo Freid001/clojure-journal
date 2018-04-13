@@ -1,14 +1,14 @@
 # Clojure Journal
 
-# About
+## About
 * A simple REST api which stores debit & credit journal entries.
 * The purpose of this project was to gain some experience writing an application in Clojure.
 
-## Requirements
+### Requirements
 * [Docker](https://www.docker.com/) 
 * [Gradle](https://gradle.org/)
 
-## Installation
+### Installation
 ```bash
 // build and run app
 gradle build run
@@ -17,7 +17,7 @@ gradle build run
 gradle stop
 ```
 
-# Usage
+## Usage
 
 ##### Endpoint
 ```
