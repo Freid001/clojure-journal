@@ -7,6 +7,7 @@
 ### Requirements
 * [Docker](https://www.docker.com/) 
 * [Gradle](https://gradle.org/)
+* [Leiningen](https://leiningen.org/)
 
 ### Installation
 ```bash
